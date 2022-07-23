@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>TOP</title>
+    <meta charset="utf-8"/>
+</head>
+<body>
+<div sec:authorize="isAuthenticated()" th:fragment="logout">
+    <div>
+        <span style="font-weight:bold">User: </span><span th:text="${userName}"></span>
+        <div style="float:none">&nbsp;</div>
+        <span style="font-weight:bold">email: </span><span th:text="${email}"></span>
+        <div style="float:none">&nbsp;</div>
+        <span style="font-weight:bold">icon: </span><img th:src="${picture}"/>
+    </div>
+    <form action="#" method="post" th:action="@{/logout}">
+        <input type="submit" value="Logout"/>
+    </form>
+</div>
+<div sec:authorize="isAnonymous()">
+    <form action="#" method="get" th:action="@{/oauth2/authorization/sample-spring-google-oidc}">
+        <input type="submit" value="Login"/>
+    </form>
+</div>
+</body>
+</html>

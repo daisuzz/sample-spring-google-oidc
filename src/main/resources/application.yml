@@ -1,0 +1,20 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          sample-spring-google-oidc:
+            client-id: ${CLIENT_ID}
+            client-secret: ${CLIENT_SECRET}
+            redirect-uri: http://127.0.0.1:8080/login/oauth2/code/sample-spring-google-oidc
+            authorization-grant-type: authorization_code
+            scope:
+              - openid
+              - profile
+              - email
+        provider:
+          sample-spring-google-oidc:
+            issuer-uri: https://accounts.google.com
+logging:
+  level:
+    org.springframework.web.client.RestTemplate: DEBUG
